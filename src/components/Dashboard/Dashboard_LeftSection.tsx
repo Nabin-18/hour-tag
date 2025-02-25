@@ -80,7 +80,7 @@ const Dashboard_LeftSection = () => {
   return (
     <>
       <div className="flex w-full ">
-        <div className="flex flex-col items-center  p-2  w-full h-screen  ">
+        <div className="flex flex-col items-center  p-2  w-full  ">
           <div className="flex flex-col gap-4 p-6  w-full shadow-xl rounded-lg mt-12  ">
             <div>
               <div className="flex items-center gap-3">

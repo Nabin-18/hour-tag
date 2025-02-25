@@ -1,75 +1,47 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "./Button";
-import { MdSpaceDashboard } from "react-icons/md";
-import { BsPeopleFill } from "react-icons/bs";
-import { FaSquarePlus, FaCcPaypal } from "react-icons/fa6";
-import { SlCalender } from "react-icons/sl";
-import { SiRedhatopenshift } from "react-icons/si";
-import { IoMdAddCircle } from "react-icons/io";
-import { RiRoadMapFill } from "react-icons/ri";
-import { CgLogOut } from "react-icons/cg";
-import { GiHamburgerMenu } from "react-icons/gi";
-import { ImCross } from "react-icons/im";
-
-const myAttributes = [
-  {
-    title: "Main",
-    items: [{ text: "Dashboard", icon: <MdSpaceDashboard />, link: "/dashboard" }],
-  },
-  {
-    title: "Team",
-    items: [
-      { text: "Your team", icon: <BsPeopleFill />, link: "/your-team" },
-      { text: "Shift request", icon: <FaSquarePlus />, link: "/shift-request" },
-      { text: "Time off request", icon: <SlCalender />, link: "/time-off-request" },
-    ],
-  },
-  {
-    title: "Settings",
-    items: [
-      { text: "Past shifts", icon: <SiRedhatopenshift />, link: "/past-shift" },
-      { text: "Billing", icon: <FaCcPaypal />, link: "/payment" },
-      { text: "Settings", icon: <MdSpaceDashboard />, link: "/settings" },
-      { text: "Add member", icon: <IoMdAddCircle />, link: "/add-member" },
-      { text: "Roadmap", icon: <RiRoadMapFill />, link: "/roadmap" },
-      { text: "Log out", icon: <CgLogOut />, link: "/logout" },
-    ],
-  },
-];
+import { FaAngleDown } from "react-icons/fa";
+import myAttributes from "../assets/attribute";
 
 const SideBar = () => {
-  const [mobilemenu, setMobileMenu] = useState(false);
-
-  const handleMenu = () => {
-    console.log("Menu clicked");
-    setMobileMenu((prevState) => !prevState);  // Toggle menu state
-  };
-
-  const handleCloseMenu = () => {
-    setMobileMenu(false);  // Close menu when clicking outside
-  };
-
   return (
     <>
-      {/* ✅ Mobile Navbar */}
-      <div className="lg:hidden flex items-center gap-4 p-4 bg-white shadow-md fixed top-0 w-full z-50">
-        {/* ✅ Hamburger Icon */}
-        <button>
-          <GiHamburgerMenu onClick={handleMenu} className="text-3xl text-green-400 cursor-pointer" />
-        </button>
-        
-
-        {/* ✅ Logo */}
-        <div className="flex items-center gap-2">
-          <p className="text-2xl font-bold">HourTag</p>
-        </div>
-      </div>
-
-      {/* ✅ Sidebar for Large Screens */}
       <div className="hidden lg:flex flex-col w-[20%] h-screen fixed gap-2 overflow-y-auto bg-white shadow-md">
-        <div className="flex items-center px-6 py-4">
-          <p className="text-2xl font-bold">HourTag</p>
+        <div className="flex items-center px-6 py-4 gap-2 ml-6">
+          <svg
+            width="19"
+            height="23"
+            viewBox="0 0 19 23"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M0 1.82787C0 1.04974 0.630795 0.418945 1.40892 0.418945H15.3332C16.718 0.418945 17.4104 0.418945 17.8406 0.849147C18.2708 1.27935 18.2708 1.97175 18.2708 3.35655V3.60981C18.2708 7.38104 18.2708 9.26666 17.0993 10.4382C15.9277 11.6098 14.0421 11.6098 10.2708 11.6098H9.78193C4.37952 11.6098 0 7.23028 0 1.82787Z"
+              fill="#2ADC8B"
+            ></path>
+            <path
+              d="M0 19.8631C0 21.2479 0 21.9403 0.430202 22.3705C0.860403 22.8007 1.5528 22.8007 2.9376 22.8007H16.8619C17.64 22.8007 18.2708 22.1699 18.2708 21.3918C18.2708 15.9894 13.8913 11.6099 8.48889 11.6099H0V19.8631Z"
+              fill="#2ADC8B"
+            ></path>
+          </svg>
+
+          <p className="text-2xl font-bold ">HourTag</p>
+        </div>
+        <div className="flex items-center gap-2 m-2">
+          <hr />
+          <div className="flex items-center gap-2 w-full">
+            <button className="flex gap-2 border p-4 rounded-2xl justify-around w-full items-center">
+              <div className="flex gap-4 items-center">
+                <span className="flex bg-gray-200 rounded-full w-6 h-6 justify-center font-semibold">
+                  K
+                </span>
+                <p className="font-semibold">Khanal Dai</p>
+              </div>
+              <span>
+                <FaAngleDown />
+              </span>
+            </button>
+          </div>
         </div>
 
         {myAttributes.map((section, index) => (
@@ -78,7 +50,7 @@ const SideBar = () => {
             {section.items.map((item, idx) => (
               <Link to={item.link} key={idx} className="block">
                 <div className="flex items-center p-3 gap-3 hover:bg-green-100 h-[60px] rounded-md m-4 cursor-pointer">
-                  <span className="text-2xl">{item.icon}</span>
+                  <span className="text-2xl">{<item.icon />}</span>
                   <Button text={item.text} className="font-semibold" />
                 </div>
               </Link>
@@ -86,37 +58,6 @@ const SideBar = () => {
           </div>
         ))}
       </div>
-
-      {/* ✅ Mobile Sidebar */}
-      {mobilemenu && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex">
-          {/* Sidebar */}
-          <div className="w-3/4 h-full bg-white shadow-lg overflow-y-auto p-4">
-            <div className="flex justify-between items-center mb-4">
-              <div>Logo</div>
-              <ImCross className="h-6 w-6 cursor-pointer" onClick={handleCloseMenu} />
-            </div>
-
-            <div className="flex flex-col gap-2">
-              {myAttributes.map((item, index) => (
-                <div key={index} className="flex items-center rounded justify-center w-full h-12 border-b border-gray-300">
-                  {item.items.map((subitem, idx) => (
-                    <Link to={subitem.link} key={idx} className="block w-full">
-                      <div className="flex items-center p-3 gap-3 hover:bg-green-100 h-[60px] rounded-md m-4 cursor-pointer">
-                        <span className="text-2xl">{subitem.icon}</span>
-                        <Button text={subitem.text} className="font-semibold" />
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Clicking outside closes the menu */}
-          <div className="w-1/4 h-full" onClick={handleCloseMenu}></div>
-        </div>
-      )}
     </>
   );
 };
