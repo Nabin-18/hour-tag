@@ -4,6 +4,7 @@ import { BsDot, BsThreeDots } from "react-icons/bs";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { FaPlay } from "react-icons/fa6";
 import { GrPowerReset } from "react-icons/gr";
+import ManualShift from "./Maual_shift";
 
 interface Shift {
   time: number;
@@ -20,6 +21,7 @@ const Dashboard_LeftSection = () => {
   const [showDropdown, setShowDropdown] = useState<number | null>(null);
   const [editIndex, setEditIndex] = useState<number | null>(null);
 
+  const [showmanualshift, setShowmanualshift] = useState<boolean>(false);
   // Start/Stop shift
   const handleShiftToggle = () => {
     if (isRunning) {
@@ -85,9 +87,7 @@ const Dashboard_LeftSection = () => {
             <div>
               <div className="flex items-center gap-3">
                 <GiHand className="text-3xl text-yellow-300" />
-                <p className="font-bold text-3xl ">
-                  Welcome, Nabin!
-                </p>
+                <p className="font-bold text-3xl ">Welcome, Nabin!</p>
               </div>
             </div>
             <div className="flex justify-between items-center p-2  rounded-lg">
@@ -132,6 +132,14 @@ const Dashboard_LeftSection = () => {
                 <button className="text-white font-bold ">Reset</button>
               </div>
             </div>
+          </div>
+          <div className="flex mt-4 hover:border-b-2 hover:border-gray-500 ">
+            <button
+              onClick={() => setShowmanualshift(!showmanualshift)}
+              className="cursor-pointer"
+            >
+              <p className="text-gray-500">+ Add shift manually</p>
+            </button>
           </div>
 
           {shifts.length > 0 && (
@@ -184,6 +192,9 @@ const Dashboard_LeftSection = () => {
         </div>
         <div className="flex flex-col  shadow-lg rounded-lg bg-gray-100 mt-5"></div>
       </div>
+      {showmanualshift && (
+        <ManualShift onClose={() => setShowmanualshift(false)} />
+      )}
     </>
   );
 };

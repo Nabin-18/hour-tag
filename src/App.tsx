@@ -1,7 +1,7 @@
 import { BrowserRouter } from "react-router-dom";
 import SideBar from "./components/SideBar";
 import UserProfile from "./components/UserProfile";
-import AppRoutes from "./routes/route";// Import Routes
+import AppRoutes from "./routes/route"; // Import Routes
 
 const MainLayout = () => {
   return (
@@ -19,7 +19,7 @@ const MainLayout = () => {
         </div>
 
         {/* Dynamic Content from Routes */}
-        <div className="p-4">
+        <div className="bg-green-50  lg:bg-gray-100">
           <AppRoutes />
         </div>
       </div>
